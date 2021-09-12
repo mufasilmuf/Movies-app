@@ -1,0 +1,10 @@
+.flex-container {
+  display: flex;
+  margin: 16px;
+}
+.flex-container:hover {
+  cursor: pointer;
+}
+.left {
+  width: 76%;
+}

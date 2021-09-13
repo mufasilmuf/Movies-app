@@ -3,6 +3,3 @@
   flex-direction: column;
   height: 271px;
 }
-.mainContainer:hover {
-  cursor: pointer;
-}

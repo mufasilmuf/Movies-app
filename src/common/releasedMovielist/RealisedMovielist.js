@@ -35,7 +35,6 @@ class ReleasedMovielist extends Component {
   handeleClickDetails = (e) => {
     debugger;
     var movieDetails = e.target.alt;
-    console.log(movieDetails);
     localStorage.setItem("MovieDetails", movieDetails);
   };
 
@@ -57,9 +56,14 @@ class ReleasedMovielist extends Component {
                       <img
                         src={movie.poster_url}
                         alt={movie.title}
+                        id={movie.id}
                         className="MovieTabsImages"
                       />
-                      <ImageListItemBar key={movie.title} title={movie.title} />
+                      <ImageListItemBar
+                        key={movie.title}
+                        title={movie.title}
+                        id={movie.title}
+                      />
                     </ImageListItem>
                   </div>
                 </Link>

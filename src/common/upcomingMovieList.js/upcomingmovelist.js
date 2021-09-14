@@ -22,7 +22,10 @@ class Imagelist extends Component {
             return (
               <ImageListItem key={movie.id} onClick={this.handeleClickDetails}>
                 <img src={movie.poster_url} alt={movie.title} />
-                <ImageListItemBar title={movie.title}></ImageListItemBar>
+                <ImageListItemBar
+                  name={movie.title}
+                  title={movie.title}
+                ></ImageListItemBar>
               </ImageListItem>
             );
           })}

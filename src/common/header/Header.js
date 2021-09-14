@@ -1,7 +1,21 @@
+import { Button, Typography } from "@material-ui/core";
 import { Component } from "react";
 import "./Header.css";
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoggedIn: false,
+    };
+  }
+  setText = () => (this.state.isLoggedIn ? "LOG OUT" : "LOGIN");
+  setLogin = () => {
+    this.setState((prevState) => ({
+      isLoggedIn: !prevState.isLoggedIn,
+    }));
+  };
+
   render() {
     return (
       <div className="Header">
@@ -26,6 +40,21 @@ class Header extends Component {
 	V415.5z M384,415.5h-64v32h64V415.5z M480,415.5h-64v32h64V415.5z M480,127.5H32v256h448V127.5z M480,63.5h-64v32h64V63.5z"
           />
         </svg>
+        {this.props.showBtns && (
+          <div className="btn-group">
+            <Button className="btn1" color="primary" variant="contained">
+              <Typography>BOOK SHOW</Typography>
+            </Button>
+            <Button
+              className="btn2"
+              color="secondary"
+              variant="contained"
+              onClick={this.setLogin}
+            >
+              <Typography>{this.setText()}</Typography>
+            </Button>
+          </div>
+        )}
       </div>
     );
   }

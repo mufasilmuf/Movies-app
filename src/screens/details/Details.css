@@ -59,10 +59,16 @@
 
 .flex-containerDetails {
   display: flex;
+  flex-direction: row;
 }
 
-.flex-containerDetails>div {
+.flex-containerDetails > div {
   margin: 0px 16px;
+}
+
+.leftDetails_Images {
+  width: 270px;
+  height: 90%;
 }
 
 iframe {

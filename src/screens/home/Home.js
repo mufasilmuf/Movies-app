@@ -17,6 +17,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import ListItemText from "@material-ui/core/ListItemText";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import Loader from "../../common/loader/loader";
 
 const styles = (theme) => ({
   root: {
@@ -61,11 +62,16 @@ class Home extends Component {
       artistsList: [],
       releaseDateStart: "",
       releaseDateEnd: "",
+      showLoader: false,
     };
   }
+  showloaderTrue = () => {
+    this.setState({ showLoader: true });
+  };
 
   componentWillMount() {
     // Get upcoming movies
+    this.showloaderTrue();
     let data = null;
     let xhr = new XMLHttpRequest();
     let that = this;
@@ -91,6 +97,7 @@ class Home extends Component {
         });
       }
     });
+
     xhrReleased.open("GET", this.props.baseUrl + "movies?status=RELEASED");
     xhrReleased.setRequestHeader("Cache-Control", "no-cache");
     xhrReleased.send(dataReleased);
@@ -117,6 +124,7 @@ class Home extends Component {
       if (this.readyState === 4) {
         that.setState({
           artistsList: JSON.parse(this.responseText),
+          showLoader: false,
         });
       }
     });
@@ -193,12 +201,15 @@ class Home extends Component {
     return (
       <div>
         <Header baseUrl={this.props.baseUrl} />
-
         <div className={classes.upcomingMoviesHeading}>
           <span>Upcoming Movies</span>
         </div>
 
-        <GridList cols={5} className={classes.gridListUpcomingMovies}>
+        <GridList
+          rowHeight={250}
+          cols={6}
+          className={classes.gridListUpcomingMovies}
+        >
           {this.state.upcomingMovies.map((movie) => (
             <GridListTile key={"upcoming" + movie._id}>
               <img
@@ -211,11 +222,12 @@ class Home extends Component {
           ))}
         </GridList>
 
+        {this.state.showLoader ? <Loader /> : null}
         <div className="flex-container">
           <div className="left">
             <GridList
               cellHeight={350}
-              cols={4}
+              cols={5}
               className={classes.gridListMain}
             >
               {this.state.releasedMovies.map((movie) => (

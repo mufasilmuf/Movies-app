@@ -8,6 +8,7 @@ import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import { Link } from "react-router-dom";
+import Loader from "../../common/loader/loader";
 
 class Details extends Component {
   constructor() {
@@ -45,10 +46,16 @@ class Details extends Component {
           color: "black",
         },
       ],
+      showLoader: true,
     };
   }
 
+  showloaderTrue = () => {
+    this.setState({ showLoader: true });
+  };
+
   componentWillMount() {
+    this.showloaderTrue();
     let that = this;
     let dataMovie = null;
     let xhrMovie = new XMLHttpRequest();
@@ -56,6 +63,7 @@ class Details extends Component {
       if (this.readyState === 4) {
         that.setState({
           movie: JSON.parse(this.responseText)[0],
+          showLoader: false,
         });
       }
     });
@@ -109,7 +117,11 @@ class Details extends Component {
         </div>
         <div className="flex-containerDetails">
           <div className="leftDetails">
-            <img src={movie.poster_url} alt={movie.title} />
+            <img
+              className="leftDetails_Images"
+              src={movie.poster_url}
+              alt={movie.title}
+            />
           </div>
 
           <div className="middleDetails">
@@ -137,15 +149,16 @@ class Details extends Component {
             </div>
             <div>
               <Typography>
-                <span className="bold"> Rating:</span> {movie.critics_rating}{" "}
+                <span className="bold"> Rating:</span> {movie.critic_rating}{" "}
               </Typography>
             </div>
             <div className="marginTop16">
               <Typography>
                 <span className="bold">Plot:</span>{" "}
-                <a href={movie.wiki_url}>(Wiki Link)</a> {movie.storyline}{" "}
+                <a href={movie.wiki_url}>(Wiki Link)</a> {movie.story_line}{" "}
               </Typography>
             </div>
+            {this.state.showLoader ? <Loader /> : null}
             <div className="trailerContainer">
               <Typography>
                 <span className="bold">Trailer:</span>

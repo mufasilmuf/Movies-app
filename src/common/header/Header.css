@@ -1,29 +1,40 @@
-.Header {
-  background-color: #222;
-  height: 36px;
-  padding: 8px 32px 8px 16px;
-  display: flex;
-  justify-content: space-between;
+.app-header {
+    background-color: #222;
+    height: 36px;
+    padding: 8px 32px 8px 16px;
 }
-.logo {
-  background-color: #ff7f7f;
-  -webkit-animation: spin 8s linear infinite;
-  -moz-animation: spin 8s linear infinite;
-  animation: spin 4s linear infinite;
+
+.login-button {
+    float: right;
 }
-@-moz-keyframes spin {
-  100% {
-    -moz-transform: rotate(360deg);
-  }
+
+.app-logo {
+    animation: app-logo-spin infinite 8s linear;
+    height: 35px;
+    background: #ff7f7f;
 }
-@-webkit-keyframes spin {
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
+
+.bookshow-button {
+    float: right;
+    margin-right: 8px;
 }
-@keyframes spin {
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
+
+@keyframes app-logo-spin {
+    from { transform: scaleX(-1); }
+}
+
+.tabs {
+    margin-bottom: 20px;
+}
+
+.dispNone {
+    display: none;
+}
+
+.dispBlock {
+    display: block;
+}
+
+.red {
+    color: red;
 }

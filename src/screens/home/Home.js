@@ -71,7 +71,6 @@ class Home extends Component {
     let that = this;
     xhr.addEventListener("readystatechange", function () {
       if (this.readyState === 4) {
-        debugger;
         that.setState({
           upcomingMovies: JSON.parse(this.responseText),
         });

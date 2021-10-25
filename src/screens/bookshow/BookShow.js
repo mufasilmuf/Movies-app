@@ -73,7 +73,6 @@ class BookShow extends Component {
   }
 
   locationChangeHandler = ((event) => {
-    debugger;
     this.setState({ location: event.target.value });
     let newTheatres = [];
 
@@ -151,7 +150,7 @@ class BookShow extends Component {
       ) {
         unitPrice = show.unit_price;
         availableTickets = show.available_seats;
-        debugger;
+
         this.setState({ showId: show.id });
       }
     }
@@ -189,7 +188,7 @@ class BookShow extends Component {
     ) {
       return;
     }
-    debugger;
+
     this.props.history.push({
       pathname: "/confirm/" + this.props.match.params.id,
       bookingSummary: this.state,
